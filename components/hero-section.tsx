@@ -1,21 +1,27 @@
+"use client"
+
 import Link from "next/link"
+import { useState } from "react"
 
 export default function HeroSection() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const navItems = ["Our Company", "Volspire"]
+
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-black via-black to-blue-950">
       {/* Background gradient effect */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(30,64,175,0.3),transparent_70%)]"></div>
 
       {/* Navigation */}
-      <header className="relative z-10 px-6 py-12 mx-auto max-w-7xl flex items-center">
+      <header className="relative z-10 px-6 py-12 mx-auto max-w-7xl flex items-center justify-between">
         {/* Logo on the left */}
         <Link href="/" className="text-white text-2xl font-bold">
           scale
         </Link>
 
-        {/* Centered navigation */}
+        {/* Desktop nav (centered) */}
         <nav className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-8">
-          {["Our Company", "Volspire"].map((item) => (
+          {navItems.map((item) => (
             <Link
               key={item}
               href={`/${item.toLowerCase()}`}
@@ -25,8 +31,33 @@ export default function HeroSection() {
             </Link>
           ))}
         </nav>
+
+        {/* Mobile hamburger */}
+        <div className="md:hidden">
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="text-white text-2xl"
+          >
+            ☰
+          </button>
+        </div>
       </header>
 
+      {/* Mobile menu */}
+      {mobileMenuOpen && (
+        <nav className="absolute top-24 left-0 w-full bg-black flex flex-col items-center space-y-4 py-4 md:hidden z-20">
+          {navItems.map((item) => (
+            <Link
+              key={item}
+              href={`/${item.toLowerCase()}`}
+              className="text-gray-300 hover:text-white transition-colors text-lg"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              {item}
+            </Link>
+          ))}
+        </nav>
+      )}
 
       {/* Hero Content */}
       <main className="relative z-10 flex flex-col items-center justify-center px-6 pt-20 pb-32 mx-auto text-center max-w-7xl">
@@ -44,13 +75,20 @@ export default function HeroSection() {
           <br />
           progress and spark inspiration.
         </p>
+
+        {/* Hero buttons */}
         <div className="flex flex-col mt-10 space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
           <Link
             href="/demo"
             className="flex items-center justify-center px-8 py-3 text-lg font-medium text-gray-900 bg-white rounded-md hover:bg-gray-100 transition-colors"
           >
             Explore Products
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-5 h-5 ml-2"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
               <path
                 fillRule="evenodd"
                 d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
@@ -68,34 +106,14 @@ export default function HeroSection() {
 
         {/* Partners Section */}
         <div className="w-full mt-24">
-          <p className="mb-8 text-gray-400">
-            Our Partners Include;
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-15">
-            {/* Partner logos */}
-            <div className="h-8">
-              <div className="flex items-center space-x-6 text-white">
-                <div className="h-6">
-                  <img src="/logos/Xiaomi-logo.png" alt="Xiaomi Logo" className="h-10" />
-                </div>
-
-                <div className="h-6">
-                  <img src="/logos/amd.png" alt="AMD Logo" className="h-8" />
-                </div>
-
-                <div className="h-6">
-                  <img src="/logos/intel.png" alt="Intel Logo" className="h-8" />
-                </div>
-
-                <div className="h-6">
-                  <img src="/logos/gizzu.png" alt="Gizzu Logo" className="h-8" />
-                </div>
-
-                <div className="h-6">
-                  <img src="/logos/redragon.png" alt="OpenAI Logo" className="h-8" />
-                </div>
-              </div>
-
+          <p className="mb-8 text-gray-400">Our Partners Include:</p>
+          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
+            <div className="flex items-center space-x-6 text-white">
+              <img src="/logos/Xiaomi-logo.png" alt="Xiaomi Logo" className="h-10" />
+              <img src="/logos/amd.png" alt="AMD Logo" className="h-8" />
+              <img src="/logos/intel.png" alt="Intel Logo" className="h-8" />
+              <img src="/logos/gizzu.png" alt="Gizzu Logo" className="h-8" />
+              <img src="/logos/redragon.png" alt="Redragon Logo" className="h-8" />
             </div>
           </div>
         </div>
