@@ -15,9 +15,11 @@ export default function HeroSection() {
       {/* Navigation */}
       <header className="relative z-10 px-6 py-12 mx-auto max-w-7xl flex items-center justify-between">
         {/* Logo on the left */}
+        {/*}
         <Link href="/" className="text-white text-2xl font-bold">
           scale
         </Link>
+        */}
 
         {/* Desktop nav (centered) */}
         <nav className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-8">
@@ -107,7 +109,7 @@ export default function HeroSection() {
           <p className="mb-8 text-gray-400">Our Partners Include:</p>
           <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
             <div className="flex items-center space-x-6 text-white">
-              <img src="/logos/Xiaomi-logo.png" alt="Xiaomi Logo" className="h-10" />
+              <img src="/logos/Xiaomi-logo.png" alt="Xiaomi Logo" className="h-12" />
               <img src="/logos/amd.png" alt="AMD Logo" className="h-8" />
               <img src="/logos/intel.png" alt="Intel Logo" className="h-8" />
               <img src="/logos/gizzu.png" alt="Gizzu Logo" className="h-8" />
