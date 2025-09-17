@@ -61,18 +61,16 @@ export default function HeroSection() {
 
       {/* Hero Content */}
       <main className="relative z-10 flex flex-col items-center justify-center px-6 pt-20 pb-32 mx-auto text-center max-w-7xl">
-        <h1 className="max-w-4xl mx-auto text-4xl font-bold text-white md:text-5xl lg:text-6xl">
+        <h1 className="max-w-4xl mx-auto text-2xl font-bold text-white md:text-5xl lg:text-5xl">
           Soulspire Group
-          <br />
-          Powering Innovation
         </h1>
+        <h2 className="max-w-3xl mx-auto mt-4 text-xl text-gray-300 md:text-2xl lg:text-2xl">
+          Inspiring Innovation, Empowering Progress.
+        </h2>
         <p className="max-w-2xl mx-auto mt-6 text-lg text-gray-300">
           At Soulspire Group, we deliver trusted energy solutions,
-          <br />
           cutting-edge electronics, and precision cameras, empowering
-          <br />
           homes, businesses, and creators with products that fuel
-          <br />
           progress and spark inspiration.
         </p>
 
@@ -80,12 +78,12 @@ export default function HeroSection() {
         <div className="flex flex-col mt-10 space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
           <Link
             href="/demo"
-            className="flex items-center justify-center px-8 py-3 text-lg font-medium text-gray-900 bg-white rounded-md hover:bg-gray-100 transition-colors"
+            className="flex items-center justify-center px-5 py-2 text-small font-small text-gray-900 bg-white rounded-md hover:bg-gray-100 transition-colors"
           >
             Explore Products
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="w-5 h-5 ml-2"
+              className="w-2 h-4 ml-2"
               viewBox="0 0 20 20"
               fill="currentColor"
             >
@@ -98,7 +96,7 @@ export default function HeroSection() {
           </Link>
           <Link
             href="/demo"
-            className="flex items-center justify-center px-8 py-3 text-lg font-medium text-gray-900 bg-white rounded-md hover:bg-gray-100 transition-colors"
+            className="flex items-center justify-center px-8 py-3 text-small font-small text-gray-900 bg-white rounded-md hover:bg-gray-100 transition-colors"
           >
             Contact Us
           </Link>
