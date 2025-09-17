@@ -8,25 +8,18 @@ export default function HeroSection() {
   const navItems = ["Our Company", "Volspire"]
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-black via-black to-blue-950">
+    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-black via-black to-blue-950 flex flex-col">
       {/* Background gradient effect */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(30,64,175,0.3),transparent_70%)]"></div>
 
       {/* Navigation */}
-      <header className="relative z-10 px-6 py-12 mx-auto max-w-7xl flex items-center justify-between">
-        {/* Logo on the left */}
-        {/*}
-        <Link href="/" className="text-white text-2xl font-bold">
-          scale
-        </Link>
-        */}
-
+      <header className="relative z-10 px-6 py-12 mx-auto max-w-7xl flex items-center justify-between w-full">
         {/* Desktop nav (centered) */}
-        <nav className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-8">
+        <nav className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-10 whitespace-nowrap">
           {navItems.map((item) => (
             <Link
               key={item}
-              href={`/${item.toLowerCase()}`}
+              href={`/${item.toLowerCase().replace(/\s+/g, "-")}`} // safe URL
               className="text-gray-300 hover:text-white transition-colors"
             >
               {item}
@@ -47,11 +40,11 @@ export default function HeroSection() {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <nav className="absolute top-24 left-0 w-full bg-black flex flex-col items-center space-y-4 py-4 md:hidden z-20">
+        <nav className="absolute top-20 left-0 w-full bg-black flex flex-col items-center space-y-4 py-4 md:hidden z-20">
           {navItems.map((item) => (
             <Link
               key={item}
-              href={`/${item.toLowerCase()}`}
+              href={`/${item.toLowerCase().replace(/\s+/g, "-")}`}
               className="text-gray-300 hover:text-white transition-colors text-lg"
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -61,8 +54,8 @@ export default function HeroSection() {
         </nav>
       )}
 
-      {/* Hero Content */}
-      <main className="relative z-10 flex flex-col items-center justify-center px-6 pt-20 pb-32 mx-auto text-center max-w-7xl">
+      {/* Main content centered */}
+      <main className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 mx-auto text-center max-w-6xl">
         <h1 className="max-w-4xl mx-auto text-2xl font-bold text-white md:text-5xl lg:text-5xl">
           Soulspire Group
         </h1>
@@ -80,7 +73,7 @@ export default function HeroSection() {
         <div className="flex flex-col mt-10 space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
           <Link
             href="/demo"
-            className="flex items-center justify-center px-5 py-2 text-small font-small text-gray-900 bg-white rounded-md hover:bg-gray-100 transition-colors"
+            className="flex items-center justify-center px-5 py-2 text-sm font-medium text-gray-900 bg-white rounded-md hover:bg-gray-100 transition-colors"
           >
             Explore Products
             <svg
@@ -98,26 +91,28 @@ export default function HeroSection() {
           </Link>
           <Link
             href="/demo"
-            className="flex items-center justify-center px-8 py-3 text-small font-small text-gray-900 bg-white rounded-md hover:bg-gray-100 transition-colors"
+            className="flex items-center justify-center px-5 py-2 text-sm font-medium text-gray-900 bg-white rounded-md hover:bg-gray-100 transition-colors"
           >
             Contact Us
           </Link>
         </div>
 
         {/* Partners Section */}
-        <div className="w-full mt-24">
-          <p className="mb-8 text-gray-400">Our Partners Include:</p>
+        <div className="w-full mt-12">
+          <p className="mb-6 text-gray-400">Our Partners Include:</p>
           <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
-            <div className="flex items-center space-x-6 text-white">
-              <img src="/logos/Xiaomi-logo.png" alt="Xiaomi Logo" className="h-12" />
-              <img src="/logos/amd.png" alt="AMD Logo" className="h-8" />
-              <img src="/logos/intel.png" alt="Intel Logo" className="h-8" />
-              <img src="/logos/gizzu.png" alt="Gizzu Logo" className="h-8" />
-              <img src="/logos/redragon.png" alt="Redragon Logo" className="h-8" />
-            </div>
+            <img src="/logos/amd.png" alt="AMD Logo" className="h-8" />
+            <img src="/logos/intel.png" alt="Intel Logo" className="h-8" />
+            <img src="/logos/gizzu.png" alt="Gizzu Logo" className="h-8" />
+            <img src="/logos/redragon.png" alt="Redragon Logo" className="h-8" />
           </div>
         </div>
       </main>
+
+      {/* Footer always at bottom */}
+      <footer className="relative z-10 py-4 text-center text-gray-400 bg-black">
+        © {new Date().getFullYear()} Soulspire Group. All Rights Reserved.
+      </footer>
     </div>
   )
 }
