@@ -5,7 +5,7 @@ import { useState } from "react"
 
 export default function HeroSection() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const navItems = ["Our Company", "Volspire"]
+  const navItems = ["Our Company", "Voltspire"]
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-black via-black to-blue-950 flex flex-col">
