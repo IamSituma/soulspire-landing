@@ -7,11 +7,6 @@ export default function HeroSection() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const navItems = ["Our Company", "Voltspire"]
 
-  // WhatsApp number + custom message
-  const whatsappNumber = "256773472157"
-  const whatsappMessage = "Hello, I would like to know more about Soulspire Group's products and services."
-  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`
-
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-black via-black to-blue-950 flex flex-col">
       {/* Decorative background blobs */}
@@ -108,11 +103,9 @@ export default function HeroSection() {
             </svg>
           </Link>
 
-          {/* WhatsApp Contact Us */}
+          {/* Email Contact Us */}
           <Link
-            href={whatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="mailto:info@soulspiregroup.com?subject=Inquiry&body=Hello,%20I%20would%20like%20to%20know%20more%20about%20Soulspire%20Group%27s%20products%20and%20services."
             className="inline-flex items-center justify-center px-5 py-2 rounded-md bg-white text-gray-900 text-sm font-medium"
           >
             Contact Us
