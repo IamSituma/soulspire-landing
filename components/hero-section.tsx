@@ -1,30 +1,70 @@
 "use client"
 
 import Link from "next/link"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 export default function HeroSection() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const navItems = ["Our Company", "Voltspire"]
 
+  // Background items (videos/photos)
+  const backgrounds = [
+    { type: "video", src: "/bg1.mp4" },
+    { type: "image", src: "/bg2.jpg" },
+    { type: "video", src: "/bg3.mp4" },
+    { type: "image", src: "/bg4.jpg" },
+  ]
+
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % backgrounds.length)
+    }, 8000) // switch every 8 seconds
+    return () => clearInterval(interval)
+  }, [backgrounds.length])
+
   return (
-    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-black via-black to-blue-950 flex flex-col">
-      {/* Decorative background blobs */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-40 -left-40 w-96 h-96 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20" />
-        <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20" />
+    <div className="relative min-h-screen overflow-hidden flex flex-col">
+      {/* Background */}
+      <div className="absolute inset-0 z-0">
+        {backgrounds.map((bg, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-1000 ${
+              index === currentIndex ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            {bg.type === "video" ? (
+              <video
+                src={bg.src}
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <img
+                src={bg.src}
+                alt={`Background ${index}`}
+                className="w-full h-full object-cover"
+              />
+            )}
+          </div>
+        ))}
+        {/* Overlay for readability */}
+        <div className="absolute inset-0 bg-black/60"></div>
       </div>
 
       {/* Header / Nav */}
       <header className="relative z-10 w-full px-6 py-4 max-w-7xl mx-auto flex items-center justify-between">
-        {/* Optional site title / logo */}
         <div className="flex items-center">
           <Link href="/" className="text-white text-lg md:text-2xl font-bold">
             Soulspire
           </Link>
         </div>
 
-        {/* Desktop nav (centered) */}
         <nav className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-8 whitespace-nowrap">
           {navItems.map((item) => (
             <Link
@@ -37,7 +77,6 @@ export default function HeroSection() {
           ))}
         </nav>
 
-        {/* Mobile hamburger */}
         <div className="md:hidden">
           <button
             aria-label="Toggle menu"
@@ -49,7 +88,6 @@ export default function HeroSection() {
         </div>
       </header>
 
-      {/* Mobile menu (overlay) */}
       {mobileMenuOpen && (
         <div className="md:hidden absolute top-16 left-0 right-0 bg-black bg-opacity-95 z-20 p-4">
           <nav className="flex flex-col items-center space-y-4">
@@ -67,7 +105,7 @@ export default function HeroSection() {
         </div>
       )}
 
-      {/* Main content (centers vertically and horizontally) */}
+      {/* Main Content */}
       <main className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 text-center max-w-5xl mx-auto">
         <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
           Soulspire Group
@@ -78,8 +116,9 @@ export default function HeroSection() {
         </h2>
 
         <p className="mt-6 text-sm md:text-lg text-gray-300 max-w-2xl">
-          At Soulspire Group, we deliver trusted energy solutions, cutting-edge electronics, and precision cameras — empowering homes,
-          businesses, and creators with products that fuel progress and spark inspiration.
+          At Soulspire Group, we deliver trusted energy solutions, cutting-edge
+          electronics, and precision cameras — empowering homes, businesses, and
+          creators with products that fuel progress and spark inspiration.
         </p>
 
         {/* Buttons */}
@@ -115,19 +154,33 @@ export default function HeroSection() {
         {/* Partners / Logos */}
         <div className="w-full mt-8">
           <p className="mb-4 text-gray-400">Our Partners Include:</p>
-
           <div className="flex items-center justify-center gap-4 md:gap-8 flex-wrap">
-            {/* Logos scale down on mobile (w-10) and up on md (w-20) */}
-            <img src="/logos/amd.png" alt="AMD Logo" className="w-10 md:w-20 h-auto" />
-            <img src="/logos/intel.png" alt="Intel Logo" className="w-10 md:w-20 h-auto" />
-            <img src="/logos/gizzu.png" alt="Gizzu Logo" className="w-10 md:w-20 h-auto" />
-            <img src="/logos/redragon.png" alt="Redragon Logo" className="w-10 md:w-20 h-auto" />
+            <img
+              src="/logos/amd.png"
+              alt="AMD Logo"
+              className="w-10 md:w-20 h-auto"
+            />
+            <img
+              src="/logos/intel.png"
+              alt="Intel Logo"
+              className="w-10 md:w-20 h-auto"
+            />
+            <img
+              src="/logos/gizzu.png"
+              alt="Gizzu Logo"
+              className="w-10 md:w-20 h-auto"
+            />
+            <img
+              src="/logos/redragon.png"
+              alt="Redragon Logo"
+              className="w-10 md:w-20 h-auto"
+            />
           </div>
         </div>
       </main>
 
-      {/* Footer (always visible at bottom) */}
-      <footer className="relative z-10 py-3 text-center text-gray-400 bg-black">
+      {/* Footer */}
+      <footer className="relative z-10 py-3 text-center text-small text-gray-400 bg-black/70">
         © {new Date().getFullYear()} Soulspire Group. All Rights Reserved.
       </footer>
     </div>
